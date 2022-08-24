@@ -19,14 +19,14 @@ namespace MintLib {
 			size[vertex] = 1;
 		}
 
-		void FindSet(const Type& vertex) { // return root of the set, where vertex located;
+		Type FindSet(Type vertex) { // return root of the set, where vertex located;
 			if (vertex == parent[vertex]) {
 				return vertex;
 			}
 			return parent[vertex] = FindSet(parent[vertex]);
 		}
 
-		void JoinSets(const Type& lhs, const Type& rhs) { // groups 2 sets into one: prent of root rhs - lhs
+		void JoinSets(Type lhs, Type rhs) { // groups 2 sets into one: prent of root rhs - lhs
 			lhs = FindSet(lhs);
 			rhs = FindSet(rhs);
 			if (lhs != rhs) {
@@ -38,7 +38,7 @@ namespace MintLib {
 			}
 		}
 
-	private:
+		private:
 		std::vector<Type> parent{};
 		std::vector<size_t> size{};
 	};
